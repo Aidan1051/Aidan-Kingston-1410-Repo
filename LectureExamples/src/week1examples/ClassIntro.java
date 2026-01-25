@@ -3,14 +3,14 @@ package week1examples;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Classintro {
+public class ClassIntro {
 
     String firstName;
     String lastName;
     LocalDate birthdate;
     private char gender;
 
-    public Classintro(String firstName, String lastName, LocalDate birthdate) {
+    public ClassIntro(String firstName, String lastName, LocalDate birthdate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;
@@ -61,7 +61,7 @@ public class Classintro {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Classintro that = (Classintro) o;
+        ClassIntro that = (ClassIntro) o;
         return gender == that.gender && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(birthdate, that.birthdate);
     }
 
@@ -71,7 +71,7 @@ public class Classintro {
     }
 
     public static void main(String[] args) {
-        Classintro ci = new Classintro("Aidan", "Kingston", LocalDate.of(2009, 11, 15));
+        ClassIntro ci = new ClassIntro("Aidan", "Kingston", LocalDate.of(2009, 11, 15));
         ci.setGender('M');
 
         System.out.println(ci);

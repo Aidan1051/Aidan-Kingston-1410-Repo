@@ -16,7 +16,6 @@ public class Intro {
         this.firstName = firstName;
         this.lastName = lastName;
     }
-
     public String getFirstName() {
         return firstName;
     }

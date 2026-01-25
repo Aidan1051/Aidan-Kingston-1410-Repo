@@ -13,7 +13,7 @@ public class GeoLocaterApp {
     public static String getLocationData(String locationName) {
     locationName = !locationName.contains("&") ? locationName.replaceAll(" ", "+") : "";
 
-    String urlString = "https://geocoding-api.open-meteo.com/v1/search?name=West+valley+city" + locationName + "&count=10&language=en&format=json");
+    String urlString = "https://geocoding-api.open-meteo.com/v1/search?name=West+valley+city" + locationName + "&count=10&language=en&format=json";
 
     try {
         URL url = new URI(urlString).toURL();

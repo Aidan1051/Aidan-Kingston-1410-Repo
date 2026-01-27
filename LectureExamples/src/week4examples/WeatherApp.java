@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import week4examples.models.GeoLocationResult;
 import week4examples.models.GeoLocationRoot;
 import week4examples.models.WeatherRoot;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,9 +11,11 @@ import java.net.URISyntaxException;
 
 public class WeatherApp {
     public static String getWeather(String locationName) throws URISyntaxException, IOException {
+
         GeoLocationRoot results = GeoLocaterApp.getLocationData(locationName);
         if (results == null || results.getResults() == null || results.getResults().isEmpty()) {
-            return "Location not found: " + locationName;
+            System.out.println("No results found for location: " + locationName);
+            return "";
         }
         GeoLocationResult locationData = results.getResults().getFirst();
 
@@ -29,8 +30,10 @@ public class WeatherApp {
             System.out.print("Enter location name: ");
             for (String input = keyboard.readLine(); !input.isEmpty(); input = keyboard.readLine()) {
                 String weatherJson = getWeather(input);
-                WeatherRoot weatherData = new ObjectMapper().readValue(weatherJson, WeatherRoot.class);
-
+                if (!weatherJson.isEmpty()) {
+                    WeatherRoot weatherData = new ObjectMapper().readValue(weatherJson, WeatherRoot.class);
+                    System.out.println(weatherData);
+                }
                 System.out.println("Enter location name: ");
             }
         } catch(IOException e) {

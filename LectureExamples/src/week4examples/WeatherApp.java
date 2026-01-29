@@ -3,11 +3,16 @@ package week4examples;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import week4examples.models.GeoLocationResult;
 import week4examples.models.GeoLocationRoot;
+import week4examples.models.WeatherOutDTO;
 import week4examples.models.WeatherRoot;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class WeatherApp {
     public static String getWeather(String locationName) throws URISyntaxException, IOException {
@@ -32,8 +37,11 @@ public class WeatherApp {
                 String weatherJson = getWeather(input);
                 if (!weatherJson.isEmpty()) {
                     WeatherRoot weatherData = new ObjectMapper().readValue(weatherJson, WeatherRoot.class);
-                    System.out.println(weatherData);
+                    System.out.println(packageWeatherData(weatherData));
+                }else {
+                    System.out.println("No results found for this location: " + input);
                 }
+
                 System.out.println("Enter location name: ");
             }
         } catch(IOException e) {
@@ -42,6 +50,63 @@ public class WeatherApp {
             System.out.println("Unable to parse JSON from required APIs.");
         }
 
+
+    }
+
+    public static WeatherOutDTO packageWeatherData(WeatherRoot weatherRoot) {
+        System.out.println(weatherRoot.getDaily().getTime());
+        WeatherOutDTO weatherOutDTO = new WeatherOutDTO();
+        weatherOutDTO.setTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyy-MM-dd'T''HH':00")));
+        int index = indexOfCurrentTime(weatherRoot.getHourly().getTime(), weatherOutDTO.getTime());
+        weatherOutDTO.setLatitude(weatherRoot.getLatitude());
+        weatherOutDTO.setLongitude(weatherRoot.getLongitude());
+        weatherOutDTO.setTemperature(weatherRoot.getHourly().getTemperature2m().get(index));
+        weatherOutDTO.setRelativeHumidity(weatherRoot.getHourly().getRelativeHumidity2m().get(index));
+        weatherOutDTO.setApparentTemperature(weatherRoot.getHourly().getApparentTemperature().get(index));
+        weatherOutDTO.setWeatherCondition(convertWeatherCode(weatherRoot.getHourly().getWeatherCode().get(index)));
+        weatherOutDTO.setVisibility(weatherRoot.getHourly().getVisibility().get(index));
+        weatherOutDTO.setWindSpeed(weatherRoot.getHourly().getWind_speed_10m().get(index));
+        weatherOutDTO.setSoilTemperature(weatherRoot.getHourly().getSoilTemperature0cm().get(index));
+
+        weatherOutDTO.setDailyWeatherConditions(convertWeatherCode(weatherRoot.getDaily().getWeatherCode().getFirst()));
+        weatherOutDTO.setMaxTemperature((weatherRoot.getDaily().getTemperature2mMax().get(index)));
+        weatherOutDTO.setMinTemperature((weatherRoot.getDaily().getTemperature2mMin().get(index)));
+        weatherOutDTO.setSunrise((weatherRoot.getDaily().getSunrise().get(index)));
+        weatherOutDTO.setSunset((weatherRoot.getDaily().getSunset().get(index)));
+        System.out.println(weatherRoot.getDaily().getTime().toString());
+        return weatherOutDTO;
+    }
+
+    private static int indexOfCurrentTime(ArrayList<String> timeList, String currentTime) {
+        for(int i = 0; i < timeList.size(); i++) {
+            if(timeList.get(i).equalsIgnoreCase(currentTime)) {
+                return i;
+
+            }
+        }
+        return -1;
+    }
+
+    private static String convertWeatherCode(int weatherCode){
+        String weatherCondition;
+        if(weatherCode == 0){
+            weatherCondition = "Clear";
+        }else if(weatherCode > 45 && weatherCode <= 48) {
+            weatherCondition = "Fog";
+        }else if(weatherCode > 0 && weatherCode <= 3){
+            weatherCondition = "Cloudy";
+        }else if((weatherCode >= 51 && weatherCode <= 67)
+                || (weatherCode >= 80 && weatherCode <=82)){
+            weatherCondition = "Rain";
+        }else if(weatherCode >= 71 && weatherCode <= 77){
+            weatherCondition = "Snow";
+        }else if(weatherCode >= 95 && weatherCode <= 99){
+            weatherCondition = "Thunderstorm";
+        }else {
+            weatherCondition = "Unknown";
+        }
+
+        return weatherCondition;
 
     }
 }

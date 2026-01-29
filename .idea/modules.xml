@@ -4,9 +4,11 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Aidan-Kingston-1410-Repo.iml" filepath="$PROJECT_DIR$/.idea/Aidan-Kingston-1410-Repo.iml" />
       <module fileurl="file://$PROJECT_DIR$/CS1410_Labs/CS1410_Labs.iml" filepath="$PROJECT_DIR$/CS1410_Labs/CS1410_Labs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CS1410_RecursionJUnit/CS1410_RecursionJUnit.iml" filepath="$PROJECT_DIR$/CS1410_RecursionJUnit/CS1410_RecursionJUnit.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab1/Lab1.iml" filepath="$PROJECT_DIR$/Lab1/Lab1.iml" />
       <module fileurl="file://$PROJECT_DIR$/LectureExamples/LectureExamples.iml" filepath="$PROJECT_DIR$/LectureExamples/LectureExamples.iml" />
       <module fileurl="file://$PROJECT_DIR$/PA1/PA1.iml" filepath="$PROJECT_DIR$/PA1/PA1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PA2_WeatherApp/PA2_WeatherApp.iml" filepath="$PROJECT_DIR$/PA2_WeatherApp/PA2_WeatherApp.iml" />
     </modules>
   </component>
 </project>

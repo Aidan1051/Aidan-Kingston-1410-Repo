@@ -35,7 +35,7 @@ public class RecursionExamples {
 //        fibLoop(n);
 
         long start = System.nanoTime();
-        for (int(repeat = 0; repeat < 15000; repeat++) {
+        for (int repeat = 0; repeat < 15000; repeat++) {
             fibLoop(n);
         }
         double end = (System.nanoTime() - start) / 1_000_000.0;

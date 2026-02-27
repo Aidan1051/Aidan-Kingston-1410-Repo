@@ -1,6 +1,6 @@
-package week7examples.children;
+package week8examples.children;
 
-import week7examples.parent.Person;
+import week8examples.parent.Person;
 
 import java.time.LocalDate;
 
@@ -10,9 +10,9 @@ public class Student {
     private int studentId;
 
 
-    public Student(LocalDate dateOfBirth, String lastName, int studentId) {
-        super(dateOfBirth, lastName);
-        this.studentId = studentId;
+    public class Student extends Person {
+        public Student(LocalDate dateOfBirth, String lastName) {
+            super(dateOfBirth, lastName);
 
         }
 

@@ -1,0 +1,124 @@
+T/F: 25 questions
+M.C.: 35 questions
+Essay: 4 out of 5 questions required
+
+String: Immutable
+StringBuilder: Mutable
+Recursion: Function calls itself until base(s) are met | Every call adds a program pointer to the stack
+Unit Testing: Small unit testing | Coverage 50-75% | Basic testing/randomized data/edge cases. | The purpose of unit testing is to get rid of manually testing.
+Java Docs: /** comment **/. No, you only have access to the java documentation that coorelates to the classes that are prebuilt in your compiler.
+UML: Supposed to help you to understand classes.
+class MyClass { public static final int var1=5; MyClass(int var1) {this.var1=var1;} || Will this compile? No, Final means it can't be changed
+Shape private int radius; Can I do this if shape is an interface? No. You can't have internal private member variables in an interface. You can have static variables.
+Object is a class. Not an abstract class.
+You cannot create an instance of an abstract class or interface, but you can with a class.
+|||Class: It can inherit, it can have 1 parent, can exist on it's own, Java keyword is extends. Abstract function? No. Example: Object
+|||Abstract class: It can inherit, it can have 1 parent, it can't exist on it's own. Java keyword is extends. Abstract function? Yes. Example: Person
+|||Interface: It can inherit, it can have infinite number of parents, it can't exist on it's own, Java keyword is implements. Abstract function? Yes. Example: List
+Super: used within classes or object literals to access properties and methods of an object's parent. Must be on the 1st line of my constructor.
+If your using a class that is included in your Java compiler, its good practice to study the documentation for the class. True
+Can you take a JAR file and convert it back to a Java file? No.
+Is it good practice to surround entire app with a try and catch block? No.
+Recursive State Variable: Tracks the progress you are making on every recursive call.
+What are benefits and drawbacks of a recursive function? Readability
+What is polymorphism?
+Good examples of abstract class: Animal
+How to identify a java swing component? If it starts with a J.
+Difference between public, private and protected keywords in Java? Public: no restrictions. Private: Only accessed within the class, must exist within a public class. Protected member variable/function: Package private.
+True of false. Public method is accessible by all classes that have access to the methods class source: True
+What happens when you add and remove content from a list?  number.add(2) puts it at the very end. number.add(10,3) replaces the 10th index value with 3. number.remove(5) removes the value in the 5th index value.
+What does a hashing function do? Takes some blob of data and run it through the hashing function and it becomes some unknown sequence of bits
+Can I cast between a int and a char?
+Create abstract class. create a class that inherits from that abstract class.
+public abstract class Animal { //abstract class
+    private String name; //private member variable
+    public Animal(){this} //constructor
+    public abstract Animal getA(); //abstract function
+}
+
+
+Primitive Types for Numbers:
+// -128 to 127
+byte myByte = 12;
+
+//-32,768 to 32767 - never use this really
+short myShort = 1234;
+
+//-2 billion to positive 2 billion
+int myInt = 2837;
+
+// -quintillions to quintillions
+long myLong = 123123123123L;
+
+// about 6 decimal digits
+float myFloat = 6.3f;
+
+// about 15 decimal digits
+double myDouble = 45.213434;
+
+Primitive Type For Booleans:
+// true of false
+boolean myBoolean = false;
+boolean moreThan1000 = (myInt > 1000);
+
+Type for Characters:
+// one character
+char myChar = 'W';
+
+
+//recursion implementation
+int sumOfDigits(int number) {
+    if (number = 0)
+        return 0;
+    return (number % 10) + sumOfDigits(number / 10);
+    }
+
+
+String[] to OppositeArray(int[] numbers){
+    String[] opposite = new String[numbers.length];
+    for (int i = 0; i < numbers.length;  i++) {
+        opposite[i] = String.valueOf(numbers[numbers.length-1-i]);
+    }
+    return opposite;
+}
+
+List<Integer>getEven8s(int[]numbers) {
+    List<integer> result = new ArrayList<>();
+    for (int n:numbers) {
+        if(n%2==0 || n % 8 ==0) {
+        result.add(n);
+    }
+}
+
+//format: MM-DD-YYYY
+String getMonth(String date) {
+    if (date = null || date.isEmpty()) {
+        return "";
+        }
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-DD-YYYY")
+    try {
+        LocalDate ParsedDate = LocalDate.parse(date, formatter);
+        return String.format("%02D", ParsedDate.getMonthValue());
+        }catch (DateTimeException e) {
+            return "";
+            }
+    }
+
+//fibonacci sequence recursive
+public static void main(Stringp[] args) {
+    int n = 6;
+
+    fibonacci(n);
+
+    private static long fibonacci(int n) {
+    if (n<= 1) {
+    return n;
+    }
+    if (fibonacciCache[n] != 0) {
+
+    long nthFibonacciNUmber = (fibonacci(n-1) + fibonacci(n-2));
+    fibonacciCache[n] = nthFibonacciNumber;
+    return (fibonacci(n-1) + fibonacci(n-2));
+
+
+

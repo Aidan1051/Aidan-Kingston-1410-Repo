@@ -11,4 +11,6 @@ public interface VirtualCharacter {
     public void block(int waitCounter);
 
     void performSpecialAttack(int attackSeed);
+
+    char getGender();
 }

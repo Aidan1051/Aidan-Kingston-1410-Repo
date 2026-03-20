@@ -25,8 +25,8 @@ public abstract class Person {
         public boolean validGender(Character checkMe) {
                 if (checkMe == 'M' || checkMe == 'm') {
                         return true;
-                } else return (checkMe == 'F' || checkMe == 'f') {
-                }
+                } else return (checkMe == 'F' || checkMe == 'f');
+
         }
 
         public abstract double computeHeight();

@@ -23,9 +23,12 @@ public abstract class Person {
         }
 
         public boolean validGender(VirtualCharacter checkMe) {
-                if (checkMe == 'M' || checkMe == 'm') {
+                char gender = checkMe.getGender(); // get the character
+
+                if (gender == 'M' || gender == 'm' || gender == 'F' || gender == 'f') {
                         return true;
-                } else return (checkMe == 'F' || checkMe == 'f') {
+                } else {
+                        return false;
                 }
         }
 

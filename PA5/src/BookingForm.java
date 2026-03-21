@@ -17,6 +17,7 @@ public class BookingForm extends JFrame {
     private final JTextArea notesArea;
     private final JTextArea summaryArea;
 
+
     public BookingForm() {
         setTitle("Car Service Booking App");
         setSize(500, 600);
@@ -40,6 +41,7 @@ public class BookingForm extends JFrame {
         panel.add(new JLabel("Name:"));
         nameField = new JTextField();
         panel.add(nameField);
+
 
         panel.add(new JLabel("Phone:"));
         phoneField = new JTextField();
@@ -66,7 +68,6 @@ public class BookingForm extends JFrame {
         checkPanel.add(tireCheck);
         checkPanel.add(washCheck);
         panel.add(checkPanel);
-
         panel.add(new JLabel("Time:"));
         JPanel radioPanel = new JPanel();
         morningBtn = new JRadioButton("Morning");
@@ -77,6 +78,7 @@ public class BookingForm extends JFrame {
         radioPanel.add(morningBtn);
         radioPanel.add(afternoonBtn);
         panel.add(radioPanel);
+
 
         panel.add(new JLabel("Notes:"));
         notesArea = new JTextArea(3, 20);

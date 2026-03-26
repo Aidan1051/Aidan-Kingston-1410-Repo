@@ -99,7 +99,7 @@ public class BookingForm extends JFrame {
         clearBtn.addActionListener(e -> clearForm());
         clearItem.addActionListener(e -> clearForm());
         exitItem.addActionListener(e -> System.exit(0));
-        aboutItem.addActionListener(e -> JOptionPane.showMessageDialog(this, "Car Service Booking App\nfor extra credit"));
+        aboutItem.addActionListener(e -> JOptionPane.showMessageDialog(this, "Car Service Booking App"));
         serviceBox.addActionListener(e -> notesArea.setText("Selected: " + serviceBox.getSelectedItem()));
 
         setVisible(true);

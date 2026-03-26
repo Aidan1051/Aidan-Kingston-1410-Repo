@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class MatrixCalculations {
 
@@ -21,7 +22,22 @@ public class MatrixCalculations {
      * Takes a matrix of numbers and returns the coordinate Pair list for each instance the given number was found.
      */
     public static List<Pair> findAll(List<List<Integer>> numbers, int givenNumber) {
+        List<Pair> pairs = new ArrayList<>();
+//        for (int r = 0; r < numbers.size(); r++) {
+//            for (int c = 0; c < numbers.get(r).size(); c++) {
+//                if (numbers.get(r).get(c) == givenNumber) {
+//                    pairs.add(Pair.builder().row(r).column(c).build());
+//                }
+//            }
+//        }
 
+
+        IntStream.range(0, numbers.size()).forEach(r ->
+                IntStream.range(0,numbers.get(r).size()).forEach( c -> {
+                    if(numbers.get(r).get(c) == givenNumber) {
+                        pairs.add(Pair.builder().row(r).column(c).build());
+                    }
+                }));
         return null;
     }
 
@@ -134,8 +150,7 @@ public class MatrixCalculations {
         Pair c1 = Pair.builder().row(1).column(2).build();
         System.out.println("With at this coordinate: " + c1 + ", you get " + get(matrix, c1));
 
-        findAll(matrix, 2);
-
+        System.out.println("List of pairs that ")
         getSecondLargestEvenNumberOfGivenRow(matrix, 2);
 
         coordinatesOfSmallestNumber(matrix);

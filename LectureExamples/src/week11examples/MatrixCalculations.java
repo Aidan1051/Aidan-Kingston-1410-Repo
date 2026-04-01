@@ -150,7 +150,7 @@ public class MatrixCalculations {
         Pair c1 = Pair.builder().row(1).column(2).build();
         System.out.println("With at this coordinate: " + c1 + ", you get " + get(matrix, c1));
 
-        System.out.println("List of pairs that ")
+        System.out.println("List of pairs that ");
         getSecondLargestEvenNumberOfGivenRow(matrix, 2);
 
         coordinatesOfSmallestNumber(matrix);

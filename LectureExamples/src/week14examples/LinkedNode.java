@@ -1,4 +1,4 @@
-package week13examples.linkednode;
+package week14examples;
 
 import java.util.List;
 
@@ -34,16 +34,21 @@ public class LinkedNode<T> {
      * @returns the item that was removed or null if this collection is empty.
      */
     public T poll() {
-        if (size != 0) {
-            size --;
-            T result = front.data;
-            front = front.left;
-            front.right = null;
-
-
+        if (size == 0) {
+            return null;
         }
 
-        return null;
+        T result = front.data;
+        front = front.left;
+        size--;
+
+        if (front != null) {
+            front.right = null;
+        } else {
+            back = null;
+        }
+
+        return result;
     }
 
     /**
@@ -51,10 +56,21 @@ public class LinkedNode<T> {
      * @returns the item that was removed or null if this collection is empty.
      */
     public T pollLast() {
-        if (size != 0) {
-            size--;
+        if (size == 0) {
+            return null;
         }
-        return null;
+
+        T result = back.data;
+        back = back.right;
+        size--;
+
+        if (back != null) {
+            back.left = null;
+        } else {
+            front = null;
+        }
+
+        return result;
     }
 
     /**
@@ -63,7 +79,37 @@ public class LinkedNode<T> {
      * @returns true if the element was found and removed and false otherwise.
      */
     public boolean pollFirstOccurrence(T item) {
+        Node<T> current = back;
 
+        while (current != null) {
+            if ((item == null && current.data == null) ||
+                    (item != null && item.equals(current.data))) {
+
+                if (size == 1) {
+                    clear();
+                    return true;
+                }
+
+                if (current == back) {
+                    pollLast();
+                    return true;
+                }
+
+                if (current == front) {
+                    poll();
+                    return true;
+                }
+
+                current.left.right = current.right;
+                if (current.right != null) {
+                    current.right.left = current.left;
+                }
+                size--;
+                return true;
+            }
+
+            current = current.right;
+        }
 
         return false;
     }
@@ -73,9 +119,10 @@ public class LinkedNode<T> {
      * @returns the element at the front of this collection or null if it's empty.
      */
     public T peek() {
-
-
-        return null;
+        if (size == 0) {
+            return null;
+        }
+        return front.data;
     }
 
     /**
@@ -83,9 +130,10 @@ public class LinkedNode<T> {
      * @return
      */
     public T peekLast() {
-
-
-        return null;
+        if (size == 0) {
+            return null;
+        }
+        return back.data;
     }
 
     /**
@@ -93,8 +141,19 @@ public class LinkedNode<T> {
      * @param element is what gets added to this collection.
      */
     public void push(T element) {
+        Node<T> newValue = new Node<>();
+        newValue.data = element;
 
+        if (size == 0) {
+            front = newValue;
+            back = newValue;
+        } else {
+            newValue.right = back;
+            back.left = newValue;
+            back = newValue;
+        }
 
+        size++;
     }
 
     /**
@@ -104,7 +163,13 @@ public class LinkedNode<T> {
      * @return true if successful and false if the list is null or empty.
      */
     public boolean pushAll(List<T> list) {
-        size += (list == null) ? (0) : (list.size());
+        if (list == null || list.isEmpty()) {
+            return false;
+        }
+
+        for (T item : list) {
+            push(item);
+        }
 
         return true;
     }
@@ -115,8 +180,6 @@ public class LinkedNode<T> {
      * @returns the size of this LinkedNode.
      */
     public int size() {
-
-
         return size;
     }
 
@@ -124,8 +187,6 @@ public class LinkedNode<T> {
      * @returns true if the LinkedNode is empty.
      */
     public boolean isEmpty() {
-
-
         return size == 0;
     }
 
@@ -134,7 +195,15 @@ public class LinkedNode<T> {
      * @returns true if this LinkedNode contains the given element and false otherwise.
      */
     public boolean contains(T t) {
+        Node<T> current = back;
 
+        while (current != null) {
+            if ((t == null && current.data == null) ||
+                    (t != null && t.equals(current.data))) {
+                return true;
+            }
+            current = current.right;
+        }
 
         return false;
     }
@@ -145,9 +214,17 @@ public class LinkedNode<T> {
      * @returns true if ALL of the elements are present in the LinkedNode and false if anyone or all of them are missing.
      */
     public boolean containsAll(List<T> list) {
+        if (list == null || list.isEmpty()) {
+            return false;
+        }
 
+        for (T item : list) {
+            if (!contains(item)) {
+                return false;
+            }
+        }
 
-        return false;
+        return true;
     }
 
     /**
@@ -155,20 +232,24 @@ public class LinkedNode<T> {
      * the final index value points to what's stored at the front.
      */
     public List<T> toList() {
+        List<T> result = new java.util.ArrayList<>();
+        Node<T> current = back;
 
+        while (current != null) {
+            result.add(current.data);
+            current = current.right;
+        }
 
-        return null;
+        return result;
     }
 
     /**
      * Wipes all of the data stored in this LinkedNode.
      */
     public void clear() {
-
         this.size = 0;
         this.front = null;
         this.back = null;
-
     }
 
     /**
@@ -178,11 +259,22 @@ public class LinkedNode<T> {
      *   where 1 is the back of the LinkedNode and 5 is the front.
      */
     public String toString() {
+        if (size == 0) {
+            return "[]";
+        }
+        String result = "[";
+        Node<T> current = back;
 
+        while (current != null) {
+            result += current.data;
+            current = current.right;
+            if (current != null) {
+                result += ", ";
+            }
+        }
 
-        return "";
+        return result + "]";
     }
-
 
     public static void main(String[] args) {
         LinkedNode<String> linkedNode = new LinkedNode<>();
@@ -208,4 +300,3 @@ public class LinkedNode<T> {
         }
     }
 }
-

@@ -1,8 +1,9 @@
-package week13examples.linkednode;
+package week14examples;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.List;
 
 class LinkedNodeTest {

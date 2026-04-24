@@ -55,7 +55,7 @@ class LinkedNodeTest {
         Assertions.assertFalse(numbers.contains(4));
         Assertions.assertTrue(numbers.contains(3));
         Assertions.assertFalse(strings.contains("me"));
-        Assertions.assertTrue(s=trings.contains("six"));
+        Assertions.assertTrue(strings.contains("six"));
     }
 
     @Test

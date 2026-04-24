@@ -26,25 +26,24 @@ public class ProgrammingChallenge1 {
                         "71636269561882670428252483600823257530420752963450";
 
         int length = 13;
-        long maxProduct = 0; //the largest product
-        String maxDigits = ""; //the digits that make the largest product
+        long maxProduct = 0;
+        String maxDigits = "";
 
         for (int i = 0; i <= number.length() - 13; i++) {
+            long product = 1; // it has to be 1 because you can't multiply by 0
 
-
-            long product = 1;
-
-            for (int j = 0; j < length; j++) {
+            for (int j = 0; j < 13; j++) { // this nested loop multiples all 13 digits together
                 int digit = number.charAt(i + j) - '0';
                 product *= digit;
             }
 
+
             if (product > maxProduct) {
                 maxProduct = product;
-                maxDigits = number.substring(i, i + length);
+                maxDigits = number.substring(i, i + length); // saves the 13 digits that that made the largest product
             }
         }
         System.out.println("Max product is " + maxProduct);
-        System.out.println("The digit is " + maxDigits);
+        System.out.println("The 13 digits are " + maxDigits);
     }
 }

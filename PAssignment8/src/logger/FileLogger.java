@@ -26,18 +26,15 @@ public class FileLogger {
 
         try {
             if (file == null || !file.exists()) {
-                System.out.println("Invalid selection.");
                 return;
             }
 
-            // collect paths
             if (file.isFile()) {
                 paths.add(file.getAbsolutePath());
             } else if (file.isDirectory()) {
                 scanFolder(file, paths);
             }
 
-            // ✅ FIX: choose correct output directory
             File outputDir;
 
             if (file.isDirectory()) {
@@ -56,8 +53,6 @@ public class FileLogger {
             }
 
             writer.close();
-
-            System.out.println("Log created at: " + logFile.getAbsolutePath());
 
         } catch (IOException e) {
             System.out.println("Error writing log file: " + e.getMessage());

@@ -1,0 +1,17 @@
+island: land surrounded by water
+book: a set of written pages
+jacket: clothing worn to keep warm
+lamp: a device that gives light
+house: a place where people live
+flower: a colorful plant
+guitar: a musical instrument with strings
+orange: a delicious fruit that is orange and grown from trees
+apple: a fruit that is red or green
+mountain: a very high hill
+ocean: a large body of salt water
+car: a vehicle with four wheels
+dog: a loyal animal often kept as a pet
+elephant: a very large animal with a trunk
+word: a sequence of letters that make up a speakable word
+key: used to open locks
+notebook: used for writing notes
